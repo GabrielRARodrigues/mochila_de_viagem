@@ -176,6 +176,7 @@ html {
   align-items: center;
   gap: 1em;
   font-size: 20px;
+  text-transform: capitalize;
 }
 
 .item strong {

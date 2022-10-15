@@ -12,12 +12,18 @@ form.addEventListener('submit', event => {
   event.preventDefault()
   const nome = event.target.elements['nome']
   const quantidade = event.target.elements['quantidade']
-
+  if (quantidade.value <= 0) {
+    alert('A quantidade tem que ser maior que zero')
+    quantidade.value = ''
+    return
+  }
   const itemAtual = {
-    nome: nome.value,
+    nome: nome.value.toLowerCase(),
     quantidade: quantidade.value
   }
-  const existe = items.find(elemento => elemento.nome === nome.value)
+  const existe = items.find(
+    elemento => elemento.nome === nome.value.toLowerCase()
+  )
 
   if (existe) {
     itemAtual.id = existe.id
@@ -25,7 +31,7 @@ form.addEventListener('submit', event => {
     atualizaElemento(itemAtual)
 
     items[
-      items.findIndex(element => {
+      items.findIndex(elemento => {
         elemento.id === existe.id
       })
     ] = itemAtual
